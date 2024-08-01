@@ -8,7 +8,6 @@
 //int userChoice;
 
 // questions game
-int q;
 int counter = 0;
 bool playAgain = false;
 char qgAgain;
@@ -26,7 +25,7 @@ void questionGame(){
 		// game
 		printf("\n==Welcome==\nYou have 5 questions.\n");
 
-		for (q = 1;q <= 5; q++){
+		for (int q = 1;q <= 5; q++){
 			printf("Question %d: 1 ", q);
 			scanf("%s", q1);
 			q++;
@@ -52,33 +51,33 @@ void questionGame(){
 			// consumes any newline char left in the buffer
 			while ((getchar()) != '\n');
 
-			while(playAgain){
+			while(1){
 
 				// stops for user input
 				scanf(" %c", &qgAgain);
 
 				if (qgAgain != 'N' || qgAgain != 'n' || qgAgain != 'Y' || qgAgain != 'y'){
+					printf("Input not valid. Please enter a ( Y ) to play again or a ( N ) to stop!\n");
 					scanf(" %c", &qgAgain);
 				}
 
-				//printf("Input not valid. Please enter a ( Y ) to play again or a ( N ) to stop!\n");
-
 				// consumes new line char
 				while (getchar() != '\n');
-			}
 
-			if (qgAgain == 'y' || qgAgain == 'Y'){
-				//reset the questions (q) to count from 0
-				int q = -1;
-				playAgain = true;
 
-			} else if (qgAgain == 'n' || qgAgain == 'N'){
-				// back to the game menu
-				playAgain = false;
-			} else {
-				printf("Input not valid. Please enter a ( Y ) to play again or a ( N ) to stop!\n");
-				// consumes any remaining char in the nput buffer
-				while (getchar() != '\n');
+				if (qgAgain == 'y' || qgAgain == 'Y'){
+					//reset the questions (q) to count from 0
+					int q = -1;
+					playAgain = true;
+
+				} else if (qgAgain == 'n' || qgAgain == 'N'){
+					// back to the game menu
+					playAgain = false;
+				} else {
+					printf("Input not valid. Please enter a ( Y ) to play again or a ( N ) to stop!\n");
+					// consumes any remaining char in the nput buffer
+					while (getchar() != '\n');
+				}
 			}
 		}
 
