@@ -18,13 +18,16 @@ char q2[100];
 char q3[100];
 char q4[100];
 char q5[100];
-char qgUserAnswer[];
-char qgCorrectAnswer[] = {'True','A','D','C','Yes'};
 
 bool checkAnswers( char qgUserAnswer, char qgCorrectAnswer);
 
 // question game function
 void questionGame(){
+	
+	// correct answers & users answers
+	char qgCorrectAnswer[] = {'T','A','D','C','Y'};
+	char qgUserAnswer[5][100];
+
 	// holds the logic for the points you gain and lose in the game
 	do {
 
@@ -34,23 +37,25 @@ void questionGame(){
 		for (int q = 1;q <= 5; q++){
 			printf("Question %d: Is the statement true or false.\n", q);
 			printf("I have a male cat. \n:");
-			scanf("%s", q1);
+			scanf("%c", qgUserAnswer[q1]);
 			q++;
 			printf("Question %d: Pick the correct answer\n", q);
 			printf(" ");
-			scanf("%s", q2);
+			scanf("%c", qgUserAnswer[q2]);
 			q++;
 			printf("Question %d: Pick the correct answer\n", q);
-			scanf("%s", q3);
+			scanf("%c", qgUserAnswer[q3]);
 			q++;
 			printf("Question %d: Pick the correct answer\n", q);
-			scanf("%s", q4);
+			scanf("%c", qgUserAnswer[q4]);
 			q++;
 			printf("Question %d: Last question\n", q);
 			printf("Do you love me????\n:");
-			scanf("%s", q5);
+			scanf("%c", qgUserAnswer[q5]);
+
 
 			//results
+			checkAnswers(qgUserAnswer[q], qgCorrectAnswer[q]);
 
 
 		}
