@@ -4,8 +4,10 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-// global variables
-//int userChoice;
+// math game
+void mathGame() {
+
+}
 
 // questions game
 int counter = 0;
@@ -16,6 +18,10 @@ char q2[100];
 char q3[100];
 char q4[100];
 char q5[100];
+char qgUserAnswer[];
+char qgCorrectAnswer[] = {'True','A','D','C','Yes'};
+
+bool checkAnswers( char qgUserAnswer, char qgCorrectAnswer);
 
 // question game function
 void questionGame(){
@@ -26,22 +32,26 @@ void questionGame(){
 		printf("\n==Welcome==\nYou have 5 questions.\n");
 
 		for (int q = 1;q <= 5; q++){
-			printf("Question %d: 1 ", q);
+			printf("Question %d: Is the statement true or false.\n", q);
+			printf("I have a male cat. \n:");
 			scanf("%s", q1);
 			q++;
-			printf("Question %d: 2 ", q);
+			printf("Question %d: Pick the correct answer\n", q);
+			printf(" ");
 			scanf("%s", q2);
 			q++;
-			printf("Question %d: 3 ", q);
+			printf("Question %d: Pick the correct answer\n", q);
 			scanf("%s", q3);
 			q++;
-			printf("Question %d: 4 ", q);
+			printf("Question %d: Pick the correct answer\n", q);
 			scanf("%s", q4);
 			q++;
-			printf("Question %d: 5 ", q);
+			printf("Question %d: Last question\n", q);
+			printf("Do you love me????\n:");
 			scanf("%s", q5);
 
 			//results
+
 
 		}
 
@@ -60,11 +70,6 @@ void checkPlayAgain() {
 
 		// stops for user input
 		scanf(" %c", &qgAgain);
-
-/*		if (qgAgain != 'N' || qgAgain != 'n' || qgAgain != 'Y' || qgAgain != 'y'){
-			printf("Input not valid. Please enter a ( Y ) to play again or a ( N ) to stop!\n");
-			scanf(" %c", &qgAgain);
-		}*/
 
 		// consumes new line char
 		while (getchar() != '\n');
@@ -110,7 +115,13 @@ int main(){
 			} while (playAgain);
 			break;
 		case 2:
-			printf("Next game!");
+			do {
+				printf("Math game!");
+				mathGame();
+				// check if they want to play again
+				checkPlayAgain();
+
+			} while (playAgain);
 			break;
 
 		default:
