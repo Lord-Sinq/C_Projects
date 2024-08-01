@@ -10,6 +10,7 @@
 // questions game
 int q;
 int counter = 0;
+bool playAgain = false;
 char qgAgain;
 char q1[100];
 char q2[100];
@@ -42,20 +43,36 @@ void questionGame(){
 			printf("Question %d: 5 ", q);
 			scanf("%s", q5);
 
-			//printf("%d", q);
-
 			//results
 
 			//check if they want to play again
 			printf("\nWould you like to play again\n");
 			printf("enter a ( Y ) to play again?\n");
 			printf("enter a ( N ) to go back to the menu?\n");
-			scanf("%c", qgAgain);
 
-			while (qgAgain != "\n");
+			while(playAgain){
+
+				// stops for user input
+				scanf("%c", &qgAgain);
+
+				if (qgAgain != 'N' || qgAgain != 'n' || qgAgain != 'Y' || qgAgain != 'y'){
+					scanf(" %c", &qgAgain);
+				}
+
+				printf("Input not valid. Please enter a ( Y ) to play again or a ( N ) to stop!\n");
+
+				// consumes new line char
+				while (getchar() != '\n');
+			}
 
 			if (qgAgain == 'y' || qgAgain == 'Y'){
-				q = -1;
+				//reset the questions (q) to count from 0
+				int q = -1;
+				playAgain = true;
+
+			} else if (qgAgain == 'n' || qgAgain == 'N'){
+				// back to the game menu
+				playAgain = false;
 			}
 		}
 
