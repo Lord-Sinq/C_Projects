@@ -4,26 +4,86 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <setjmp.h>
+#include <time.h>
+
+#define ARRAY_SIZE 5
 
 // function decloration
 bool checkAnswers( char qgUserAnswer, char qgCorrectAnswer);
 void mathGame();
 void diceGame();
+void rollDie(int *dieOne, int *dieTwo);
 char checkPlayAgain();
 void questionGame();
 
 // dice game
+
 void diceGame() {
 
+	// seed a random number generater
+	srand(time(NULL));
+
+	int dieOne;
+	int dieTwo;
+	int dgUserChoice;
+	char dgPlay;
+	int value;
+	int result;
+	int dgScore = 100;
+
+
+	system("clear");
+	// runs the dice
+	while (true){
+		printf("The game rolls two die and adds them together.\nYou must guess at what the outcome of the \ndie added together will be\n");
+		printf("You Start the game with 100 point and get plus 200 if you guess correct.\n");
+		printf("Please enter a ( Y ) if you want to spent 10 points to play?");
+		scanf("%1s", &dgPlay);
+
+
+		if(tolower(dgPlay) == 'y'){
+			printf("Pick a number between 2-12\n");
+
+			result = scanf("%d", &value);
+
+			if (result == 1){
+				// clear buffer input
+				while (getchar() != '\n');
+				
+				rollDie(&dieOne, &dieTwo);
+				int dieTotal = dieOne + dieTwo;
+				printf("Dice roled: %d %d\ntotal: %d You picked: %d\n", dieOne, dieTwo, dieTotal, dgUserChoice);
+
+				if (dieTotal == dgUserChoice){
+					dgScore += 200;
+					printf("!!!Congragulations!!!\nYou guessed right\n");
+				}else{
+					// if close or if the same even or odd as the dietotal
+					// add some points to the users score
+					continue;
+				}
+			}else {
+				printf("Invalid input!\n\n");
+				while (getchar() != '\n');
+			}
+		}else{
+			printf("\nokay or not\n");
+		}
+	}
+
 }
+
+void rollDie(int *dieOne, int *dieTwo){
+	*dieOne = (rand() % 6) + 1;
+	*dieTwo = (rand() % 6) + 1;
+}
+
 // math game
 void mathGame() {
 
 }
 
 // questions game
-
-#define ARRAY_SIZE 5
 
 int counter = 0;
 bool playAgain = false;
@@ -130,6 +190,9 @@ char checkPlayAgain() {
 	/*Check if user want to play or if the 
 	user wants to go to the main menu*/
 
+	// clear screen
+	system("clear");
+
 	char qgAgain;
 
 	//check if they want to play again
@@ -146,6 +209,7 @@ char checkPlayAgain() {
 
 
 		if (qgAgain == 'y' || qgAgain == 'n'){
+			system("clear"); // clear screen
 			return qgAgain;
 		} else {
 			printf("Please enter a ( Y ) to play again or a ( N ) to stop!\n");
@@ -162,7 +226,8 @@ int main(){
 	bool keepRunning = true;
 
 	while(keepRunning){
-		printf("!!!!!!!!!!!!!!!!!!!!!!!HELLO!!!!!!!!!!!!!!!!!!!!!!!!\n");
+		system("clear");
+		printf("!--------------------------------------------------!\n");
 		printf("!-------Please pick a number 1-9 for a game--------!\n");
 		printf("!--------------------------------------------------!\n");
 		printf("! (1) Question Game            (2) Math Game       !\n");
@@ -175,10 +240,12 @@ int main(){
 		// clear input buffer after interger input
 		while(getchar() != '\n');
 
+		//clear screen
+		system("clear");
 		switch (userChoice){
 			case 1:
 				do {
-					printf("Question game!");
+					printf("Question game!\n");
 					questionGame();
 					// ask if use wants to play again
 					qgAgain = checkPlayAgain();
@@ -187,7 +254,7 @@ int main(){
 
 			case 2:
 				do {
-					printf("Math game!");
+					printf("Math game!\n");
 					mathGame();
 					// ask if use wants to play again
 					qgAgain = checkPlayAgain();
@@ -196,7 +263,7 @@ int main(){
 
 			case 3:
 				do {
-					printf("Dice game!");
+					printf("Dice game!\n");
 					diceGame();
 					// ask if use wants to play again
 					qgAgain = checkPlayAgain();
@@ -244,5 +311,4 @@ int main(){
 	}
 
 	return 0;
-
 }
