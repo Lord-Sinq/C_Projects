@@ -41,7 +41,7 @@ void diceGame() {
 		printf("\nYou Start the game with 100 point and get plus 200 \nif you guess correct and only 20 points\nif you are 1 away and 10 points if you are 2 away.\n\n");
 		printf("Please enter a ( Y ) if you want to play for 10 points?\n");
 		printf("Please enter a ( N ) if you do not want to play?\n");
-		printf("Your points: %d\n\nEnter:", dgScore);
+		printf("Your points: %d\n\n---->", dgScore);
 		scanf("%c", &dgPlay);
 
 		// clear input buffer
@@ -50,7 +50,7 @@ void diceGame() {
 
 		if(tolower(dgPlay) == 'y'){
 			system("clear");
-			printf("\nPick a number between 2-12\n\nEnter:");
+			printf("\nPick a number between 2-12\n\n---->");
 			result = scanf("%d", &dgUserChoice);
 
 			if (result == 1 && dgUserChoice >= dgLimitLow && dgUserChoice <= dgLimitHigh){
@@ -146,7 +146,7 @@ void questionGame(){
 
 	//q1
 	printf("Question %d: Is the statement true or false.\n", q++);
-	printf("I have a male cat. \n: ");
+	printf("I have a male cat. \n----> ");
 	scanf(" %1s", &q1UserAns);
 	qgUserAnswer[0] = tolower(q1UserAns);
 
@@ -154,7 +154,7 @@ void questionGame(){
 	while ((temp = getchar()) != '\n' && temp != EOF);
 
 	//q2
-	printf("Question %d: Pick the correct answer\n: ", q++);
+	printf("Question %d: Pick the correct answer\n----> ", q++);
 	scanf(" %1s", &q2UserAns);
 	qgUserAnswer[1] = tolower(q2UserAns);
 
@@ -162,7 +162,7 @@ void questionGame(){
 	while ((temp = getchar()) != '\n' && temp != EOF);
 
 	//q3
-	printf("Question %d: Pick the correct answer\n: ", q++);
+	printf("Question %d: Pick the correct answer\n----> ", q++);
 	scanf(" %1s", &q3UserAns);
 	qgUserAnswer[2] = tolower(q3UserAns);
 
@@ -170,7 +170,7 @@ void questionGame(){
 	while ((temp = getchar()) != '\n' && temp != EOF);
 
 	//q4
-	printf("Question %d: Pick the correct answer\n: ", q++);
+	printf("Question %d: Pick the correct answer\n----> ", q++);
 	scanf(" %1s", &q4UserAns);
 	qgUserAnswer[3] = tolower(q4UserAns);
 
@@ -179,7 +179,7 @@ void questionGame(){
 
 	//q5
 	printf("Question %d: Last question\n", q);
-	printf("Do you love me????\n: ");
+	printf("Do you love me????\n----> ");
 	scanf(" %1s", &q5UserAns);
 	qgUserAnswer[4] = tolower(q5UserAns);
 
@@ -218,7 +218,7 @@ char checkPlayAgain() {
 
 	//check if they want to play again
 	printf("\nWould you like to play again\n");
-	printf("enter a ( Y ) to play again and\nor a ( N ) to go back to the menu.\n");
+	printf("enter a ( Y ) to play again and\nor a ( N ) to go back to the menu.\n---->");
 
 	while(1){
 
@@ -233,7 +233,7 @@ char checkPlayAgain() {
 			system("clear"); // clear screen
 			return qgAgain;
 		} else {
-			printf("Please enter a ( Y ) to play again or a ( N ) to stop!\n");
+			printf("Please enter a ( Y ) to play again or a ( N ) to stop!\n---->");
 		}
 	}
 }
@@ -257,7 +257,10 @@ int main(){
 		printf("!-------Please pick a number 1-9 for a game--------!\n");
 		printf("!--------------------------------------------------!\n");
 		printf("! (1) Question Game            (2) Math Game (N/A) !\n");
-		printf("! (3) Dice Game                (9) Exit Game Menu  !\n");
+		printf("! (3) Dice Game                (4) -----Game       !\n");
+		printf("! (5) -----Game                (6) -----Game       !\n");
+		printf("! (7) -----Game                (8) -----Game       !\n");
+		printf("! (9) Exit Game Menu           (10)Exit Game Menu  !\n");
 		printf("!__________________________________________________!\n");
 
 
@@ -295,7 +298,7 @@ int main(){
 					printf(" | |  |   ||  |    _|   | |__ \n");
 					printf(" | |  |   ||  |   (_    |  __|\n");
 					printf(" | |__|   ||  |     |   | |__ \n");
-					printf(" |____/ __||__ \\____|   |____|\n");
+					printf(" |____/ __||__ \\____|   |____|\n\n");
 					diceGame();
 					// ask if use wants to play again
 					qgAgain = checkPlayAgain();
