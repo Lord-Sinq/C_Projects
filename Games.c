@@ -42,24 +42,27 @@ void diceGame() {
 		printf("Please enter a ( Y ) if you want to play for 10 points?\n");
 		printf("Please enter a ( N ) if you do not want to play?\n");
 		printf("Your points: %d\n\nEnter:", dgScore);
-		scanf("%1s", &dgPlay);
+		scanf("%c", &dgPlay);
+
+		// clear input buffer
+		while (getchar() != '\n');
 
 
 		if(tolower(dgPlay) == 'y'){
-			// system("clear");
+			system("clear");
 			printf("\nPick a number between 2-12\n\nEnter:");
-
 			result = scanf("%d", &dgUserChoice);
 
-			if (/*result == 1 && */result >= dgLimitLow && result <= dgLimitHigh){
+			if (result == 1 && dgUserChoice >= dgLimitLow && dgUserChoice <= dgLimitHigh){
 				// pay for a sigle play
 				dgScore -= 10;
+
 				// clear buffer input
 				while (getchar() != '\n');
 				
 				rollDie(&dieOne, &dieTwo);
 				int dieTotal = dieOne + dieTwo;
-				printf("\nDice roled:%d %d\ntotal:(%d) You picked: (%d) You have: %d-Points\n", dieOne, dieTwo, dieTotal, dgUserChoice, dgScore);
+				printf("\nDice roled: %d & %d\ntotal:(%d) You picked: (%d)\n", dieOne, dieTwo, dieTotal, dgUserChoice);
 
 				if (dieTotal == dgUserChoice){
 					dgScore += 200;
@@ -68,32 +71,31 @@ void diceGame() {
 				// add some points to the users score
 				}else if ( dgUserChoice == 1 - dieTotal || dgUserChoice == 1 + dieTotal){
 					dgScore += 20;
-					printf("Points: %d", dgScore);
+					printf("Added 20 points: %d\n", dgScore);
 					break;
 				}else if ( dgUserChoice == dieTotal - 2 || dgUserChoice == dieTotal + 2){
 					dgScore += 10;
-					printf("Points: %d", dgScore);
+					printf("Added 10 points: %d\n", dgScore);
 					break;
 				}else{
-					printf("Sorry you lost points: %d", dgScore);
+					printf("Sorry you lost 10 points: %d\n", dgScore);
 				}
-				
-				continue;
-				system("clear");
-				}
-			}else if (result == 1){
-				printf("Your entered a 1");
-				break;
-			}else if (result >= dgLimitLow && result <+ dgLimitHigh){
-				printf("\nSorry but that number is not within 2-12 try again.\n");
-				break;
+
+				// printf("\nPoints: %d\n", dgScore);
 			}else {
 				system("clear");
-				printf("Invalid input!\n\n");
+				printf("Invalid input! Please enter a number between 2-12\n\n");
 				while (getchar() != '\n');
 			}
+
+		}else if (tolower(dgPlay) == 'n'){
+			break;
+		}else{
+			printf("\nInvalid input! Enter a 'Y' or 'N',\n\n");
+		
 		}
 	}
+}
 
 void rollDie(int *dieOne, int *dieTwo){
 	*dieOne = (rand() % 6) + 1;
@@ -245,16 +247,16 @@ int main(){
 	bool keepRunning = true;
 
 	while(keepRunning){
-		system("clear");
-		printf("__        __   _                            \n");
-	    	printf("\\ \\      / /__| | ___ ___  _ __ ___   ___  | |\n");
-    		printf(" \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\  \n");
-    		printf("  \\ V  V /  __/ | (_| (_) | | | | | |  __/ \n");
-    		printf("   \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___  \n");
+		system("clear");    
+		printf("__        __   _                            _\n");
+    	printf("\\ \\      / /__| | ___ ___  _ __ ___   ___  | |\n");
+		printf(" \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ | | \n");
+		printf("  \\ V  V /  __/ | (_| (_) | | | | | |  __/ |_|\n");
+		printf("   \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___  (_)\n");
 		printf("!--------------------------------------------------!\n");
 		printf("!-------Please pick a number 1-9 for a game--------!\n");
 		printf("!--------------------------------------------------!\n");
-		printf("! (1) Question Game            (2) Math Game       !\n");
+		printf("! (1) Question Game            (2) Math Game (N/A) !\n");
 		printf("! (3) Dice Game                (9) Exit Game Menu  !\n");
 		printf("!__________________________________________________!\n");
 
