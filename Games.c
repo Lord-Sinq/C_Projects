@@ -289,7 +289,13 @@ int main(){
 
 			case 3:
 				do {
-					printf("Dice game!\n");
+					printf("Dice game!\n");   
+					printf("  ____   __     _____   _____\n"); 
+					printf(" |  __|   ||   /        |  __|\n");
+					printf(" | |  |   ||  |         | |__ \n");
+					printf(" | |  |   ||  |         |  __|\n");
+					printf(" | |__|   ||  |         | |__ \n");
+					printf(" |____/ __||__ \_____   |____|\n");
 					diceGame();
 					// ask if use wants to play again
 					qgAgain = checkPlayAgain();
